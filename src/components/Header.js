@@ -9,7 +9,7 @@ import React from "react";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#gggg",
+    backgroundColor: "#fff",
   },
   searchInput: {
     opacity: 0.6,
@@ -23,6 +23,12 @@ const useStyles = makeStyles({
     "& .MuiSvgIcon-root": {
       paddingRight: "4px",
     },
+  },
+  btnRoot: {
+    backgroundColor: "blue",
+  },
+  btnLabel: {
+    backgroundColor: "grey",
   },
 });
 
@@ -41,7 +47,7 @@ const Header = () => {
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton>
+            <IconButton classes={{ root: classes.btnRoot, label: classes.btnLabel }}>
               <Badge badgeContent={3} color="secondary">
                 <NotificationsNoneIcon></NotificationsNoneIcon>
               </Badge>
