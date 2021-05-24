@@ -24,6 +24,18 @@ const theme = createMuiTheme({
   shape: {
     borderRadius: "12px",
   },
+  overrides: {
+    MuiAppBar: {
+      root: {
+        transform: "translateZ(0)",
+      },
+    },
+  },
+  props: {
+    MuiIconButton: {
+      disableRipple: true,
+    },
+  },
 });
 
 const useStyles = makeStyles((theme) => ({
