@@ -9,13 +9,20 @@ import React from "react";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#ccc",
+    backgroundColor: "#gggg",
   },
   searchInput: {
     opacity: 0.6,
     padding: "0px 8px",
     fontSize: "0.8rem",
     border: "1px solid #000",
+    backgroundColor: "#a2a2a2",
+    "&:hover": {
+      backgroundColor: "#f2f2f2",
+    },
+    "& .MuiSvgIcon-root": {
+      paddingRight: "4px",
+    },
   },
 });
 
@@ -29,7 +36,7 @@ const Header = () => {
             <InputBase
               className={classes.searchInput}
               placeholder={"search topics..."}
-              endAdornment={<Search fontSize="small" />}
+              startAdornment={<Search fontSize="small" />}
             ></InputBase>
           </Grid>
           <Grid item sm></Grid>
