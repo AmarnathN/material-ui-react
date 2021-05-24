@@ -7,30 +7,25 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#fff",
+    backgroundColor: theme.palette.primary,
   },
   searchInput: {
     opacity: 0.6,
-    padding: "0px 8px",
+    padding: `0px ${theme.spacing(1)}px`,
     fontSize: "0.8rem",
     border: "1px solid #000",
-    backgroundColor: "#a2a2a2",
+    color: "text.primary",
+    backgroundColor: theme.palette.background.light,
     "&:hover": {
-      backgroundColor: "#f2f2f2",
+      backgroundColor: theme.palette.background.light,
     },
     "& .MuiSvgIcon-root": {
-      paddingRight: "4px",
+      paddingRight: theme.spacing(1),
     },
   },
-  btnRoot: {
-    backgroundColor: "blue",
-  },
-  btnLabel: {
-    backgroundColor: "grey",
-  },
-});
+}));
 
 const Header = () => {
   const classes = useStyles();
@@ -42,22 +37,22 @@ const Header = () => {
             <InputBase
               className={classes.searchInput}
               placeholder={"search topics..."}
-              startAdornment={<Search fontSize="small" />}
+              startAdornment={<Search color="secondary" />}
             ></InputBase>
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton classes={{ root: classes.btnRoot, label: classes.btnLabel }}>
-              <Badge badgeContent={3} color="secondary">
+            <IconButton color="secondary">
+              <Badge badgeContent={3}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
               </Badge>
             </IconButton>
-            <IconButton>
-              <Badge badgeContent={2} color="secondary">
+            <IconButton color="secondary">
+              <Badge badgeContent={2}>
                 <ChatBubbleIcon></ChatBubbleIcon>
               </Badge>
             </IconButton>
-            <IconButton>
+            <IconButton color="secondary">
               <ExitToAppIcon></ExitToAppIcon>
             </IconButton>
           </Grid>
