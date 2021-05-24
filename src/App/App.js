@@ -21,6 +21,9 @@ const theme = createMuiTheme({
       light: "#787878",
     },
   },
+  shape: {
+    borderRadius: "12px",
+  },
 });
 
 const useStyles = makeStyles((theme) => ({
