@@ -8,8 +8,8 @@ const RadioGroup = (props) => {
       <FormLabel>{label}</FormLabel>
       <MuiRadioGroup row={true} name={name} values={value} onChange={onChange}>
         {items.length > 0 &&
-          items.map((item) => {
-            return <FormControlLabel value={item.id} control={<Radio />} label={item.label} />;
+          items.map((item, index) => {
+            return <FormControlLabel key={index} value={item.id} control={<Radio />} label={item.label} />;
           })}
       </MuiRadioGroup>
     </FormControl>

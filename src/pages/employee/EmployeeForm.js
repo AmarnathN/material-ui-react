@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import { MyControls } from "../../components/controls/MyControls";
+import { getDepartments } from "../../services/employeeService";
 
 const genderItems = [
   { id: "male", label: "Male" },
@@ -33,6 +34,13 @@ const EmployeeForm = () => {
         </Grid>
         <Grid item xs={6}>
           <MyControls.RadioGroup name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
+          <MyControls.Select
+            label="Department"
+            name="departmentId"
+            value={values.departmentId}
+            onChange={handleInputChange}
+            options={getDepartments()}
+          />
         </Grid>
       </Grid>
     </MyControls.Form>
