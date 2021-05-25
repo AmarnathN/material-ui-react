@@ -22,7 +22,7 @@ export const useForm = (intialFieldValues) => {
   return { values, setValues, handleInputChange };
 };
 
-export const MyForm = (props) => {
+export const Form = (props) => {
   const classes = useStyles();
   return <form className={classes.root}>{props.children}</form>;
 };

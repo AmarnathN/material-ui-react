@@ -1,8 +1,6 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
-import MyInput from "../../components/controls/MyInput";
-import MyRadioGroup from "../../components/controls/MyRadioGroup";
-import { useForm, MyForm } from "../../components/controls/useForm";
+import { MyControls } from "../../components/controls/MyControls";
 
 const genderItems = [
   { id: "male", label: "Male" },
@@ -23,21 +21,21 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = () => {
-  const { values, setValues, handleInputChange } = useForm(intialFieldValues);
+  const { values, setValues, handleInputChange } = MyControls.useForm(intialFieldValues);
 
   return (
-    <MyForm>
+    <MyControls.Form>
       <Grid container>
         <Grid item xs={6}>
-          <MyInput label="Full Name" value={values.fullName} onChange={handleInputChange} name="fullName" />
-          <MyInput label="Email" value={values.email} onChange={handleInputChange} name="email" />
-          <MyInput label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" />
+          <MyControls.Input label="Full Name" value={values.fullName} onChange={handleInputChange} name="fullName" />
+          <MyControls.Input label="Email" value={values.email} onChange={handleInputChange} name="email" />
+          <MyControls.Input label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" />
         </Grid>
         <Grid item xs={6}>
-          <MyRadioGroup name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
+          <MyControls.RadioGroup name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
         </Grid>
       </Grid>
-    </MyForm>
+    </MyControls.Form>
   );
 };
 
