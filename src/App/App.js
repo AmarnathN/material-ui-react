@@ -1,9 +1,9 @@
 import { createMuiTheme, CssBaseline, makeStyles, ThemeProvider } from "@material-ui/core";
-import { PeopleAltOutlined as PeopleAltOutlinedIcon } from "@material-ui/icons";
+
 import React from "react";
 import Header from "../components/Header";
-import PageHeader from "../components/PageHeader";
 import Sidemenu from "../components/Sidemenu";
+import Employees from "../pages/employee/Employees";
 import "./App.css";
 
 const theme = createMuiTheme({
@@ -17,7 +17,7 @@ const theme = createMuiTheme({
       main: "#000000",
     },
     background: {
-      default: "#ffffff",
+      default: "#f2f2f2",
       light: "#787878",
     },
   },
@@ -54,7 +54,7 @@ function App() {
         <Sidemenu />
         <div className={classes.appMain}>
           <Header></Header>
-          <PageHeader title="Page Header" description="Page decription" icon={<PeopleAltOutlinedIcon />} />
+          <Employees />
         </div>
         <CssBaseline></CssBaseline>
       </ThemeProvider>
