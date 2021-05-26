@@ -44,6 +44,10 @@ const EmployeeForm = () => {
           />
           <MyControls.Checkbox label="Permanent Employee" name="isPermanent" value={values.isPermanent} onChange={handleInputChange} />
           <MyControls.DatePicker label="Hire Date" name="hireDate" value={values.hireDate} onChange={handleInputChange} />
+          <div>
+            <MyControls.Button color="primary" size="medium" text="Submit" type="submit" />
+            <MyControls.Button color="secondary" size="medium" text="Reset" />
+          </div>
         </Grid>
       </Grid>
     </MyControls.Form>

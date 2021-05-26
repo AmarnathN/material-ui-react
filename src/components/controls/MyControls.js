@@ -3,9 +3,11 @@ import RadioGroup from "../../components/controls/RadioGroup";
 import Select from "../../components/controls/Select";
 import Checkbox from "../../components/controls/Checkbox";
 import DatePicker from "../../components/controls/DatePicker";
+import Button from "../../components/controls/Button";
 import { useForm, Form } from "./useForm";
 
 export const MyControls = {
+  Button,
   Input,
   RadioGroup,
   Form,
