@@ -31,6 +31,7 @@ const EmployeeForm = () => {
           <MyControls.Input label="Full Name" value={values.fullName} onChange={handleInputChange} name="fullName" />
           <MyControls.Input label="Email" value={values.email} onChange={handleInputChange} name="email" />
           <MyControls.Input label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" />
+          <MyControls.Input label="City" value={values.city} onChange={handleInputChange} name="city" />
         </Grid>
         <Grid item xs={6}>
           <MyControls.RadioGroup name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />

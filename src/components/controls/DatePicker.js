@@ -15,7 +15,7 @@ const DatePicker = (props) => {
         variant="inline"
         inputVariant="outlined"
         label={label}
-        format="MMM/dd/yyyy"
+        format="MMM/DD/yyyy"
         name={name}
         value={value}
         onChange={(date) => onChange(convertToDefaultEventParam(name, date))}
