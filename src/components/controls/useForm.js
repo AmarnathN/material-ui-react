@@ -21,7 +21,12 @@ export const useForm = (intialFieldValues) => {
       [name]: value,
     });
   };
-  return { values, setValues, errors, setErrors, handleInputChange };
+
+  const resetForm = () => {
+    setValues(intialFieldValues);
+    setErrors({});
+  };
+  return { values, setValues, errors, setErrors, resetForm, handleInputChange };
 };
 
 export const Form = (props) => {

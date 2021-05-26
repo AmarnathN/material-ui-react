@@ -37,7 +37,7 @@ const EmployeeForm = () => {
     return Object.values(temp).every((x) => x == "");
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange } = MyControls.useForm(intialFieldValues);
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = MyControls.useForm(intialFieldValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,7 +75,7 @@ const EmployeeForm = () => {
           <MyControls.DatePicker label="Hire Date" name="hireDate" value={values.hireDate} onChange={handleInputChange} />
           <div>
             <MyControls.Button color="primary" size="medium" text="Submit" type="submit" />
-            <MyControls.Button color="secondary" size="medium" text="Reset" />
+            <MyControls.Button color="secondary" size="medium" text="Reset" onClick={resetForm} />
           </div>
         </Grid>
       </Grid>
