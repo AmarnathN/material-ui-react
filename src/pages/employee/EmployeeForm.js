@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import { MyControls } from "../../components/controls/MyControls";
-import { getDepartments } from "../../services/employeeService";
+import { getDepartments, addEmployee } from "../../services/employeeService";
 
 const genderItems = [
   { id: "male", label: "Male" },
@@ -54,7 +54,8 @@ const EmployeeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate(values)) {
-      window.alert("All are valid");
+      addEmployee(values);
+      resetForm();
     }
   };
 

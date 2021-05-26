@@ -39,17 +39,17 @@ const Header = () => {
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton color="Inherit">
+            <IconButton color="inherit">
               <Badge badgeContent={3} color={"secondary"}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
               </Badge>
             </IconButton>
-            <IconButton color="Inherit">
+            <IconButton color="inherit">
               <Badge badgeContent={2} color={"secondary"}>
                 <ChatBubbleIcon></ChatBubbleIcon>
               </Badge>
             </IconButton>
-            <IconButton color="Inherit">
+            <IconButton color="inherit">
               <ExitToAppIcon></ExitToAppIcon>
             </IconButton>
           </Grid>
