@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const useForm = (intialFieldValues) => {
   const [values, setValues] = useState(intialFieldValues);
+  const [errors, setErrors] = useState({});
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -19,10 +21,15 @@ export const useForm = (intialFieldValues) => {
       [name]: value,
     });
   };
-  return { values, setValues, handleInputChange };
+  return { values, setValues, errors, setErrors, handleInputChange };
 };
 
 export const Form = (props) => {
+  const { children, ...other } = props;
   const classes = useStyles();
-  return <form className={classes.root}>{props.children}</form>;
+  return (
+    <form className={classes.root} {...other}>
+      {children}
+    </form>
+  );
 };

@@ -22,16 +22,42 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = () => {
-  const { values, setValues, handleInputChange } = MyControls.useForm(intialFieldValues);
+  const validate = () => {
+    let temp = {};
+    temp.fullName = values.fullName.length > 0 ? "" : "This field is required";
+    temp.email = /$^|.+@+..+/.test(values.email) ? "" : "Valid Email is required";
+    temp.mobile = values.mobile.length == 10 && Number.parseInt(values.mobile) != NaN ? "" : "Valid Mobile Number is Required";
+    temp.city = values.city ? "" : "This field is required";
+    temp.departmentId = values.departmentId.length > 0 ? "" : "This field is required";
+    setErrors({
+      ...temp,
+    });
+    return Object.values(temp).every((x) => x == "");
+  };
+
+  const { values, setValues, errors, setErrors, handleInputChange } = MyControls.useForm(intialFieldValues);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      window.alert("All are valid");
+    }
+  };
 
   return (
-    <MyControls.Form>
+    <MyControls.Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item md={6} sm={12}>
-          <MyControls.Input label="Full Name" value={values.fullName} onChange={handleInputChange} name="fullName" />
-          <MyControls.Input label="Email" value={values.email} onChange={handleInputChange} name="email" />
-          <MyControls.Input label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" />
-          <MyControls.Input label="City" value={values.city} onChange={handleInputChange} name="city" />
+          <MyControls.Input
+            label="Full Name"
+            value={values.fullName}
+            onChange={handleInputChange}
+            name="fullName"
+            errorText={errors.fullName}
+          />
+          <MyControls.Input label="Email" value={values.email} onChange={handleInputChange} name="email" errorText={errors.email} />
+          <MyControls.Input label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" errorText={errors.mobile} />
+          <MyControls.Input label="City" value={values.city} onChange={handleInputChange} name="city" errorText={errors.city} />
         </Grid>
         <Grid item md={6} sm={12}>
           <MyControls.RadioGroup label={"Gender"} name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
