@@ -22,26 +22,38 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = () => {
-  const validate = () => {
-    let temp = {};
-    temp.fullName = values.fullName.length > 0 ? "" : "This field is required";
-    temp.email = /$^|.+@+..+/.test(values.email) ? "" : "Valid Email is required";
-    temp.mobile = isNaN(values.mobile) ? "Valid Mobile Number is Required" : "";
+  const validate = (fieldValues = values) => {
+    let temp = { ...errors };
+    if ("fullName" in fieldValues) {
+      temp.fullName = values.fullName.length > 0 ? "" : "This field is required";
+    }
+    if ("email" in fieldValues) {
+      temp.email = /$^|.+@+..+/.test(values.email) ? "" : "Valid Email is required";
+    }
+    if ("mobile" in fieldValues) {
+      temp.mobile = isNaN(values.mobile) ? "Valid Mobile Number is Required" : "";
+      temp.mobile = temp.mobile != "" ? temp.mobile : values.mobile.length == 10 ? "" : "Length is should be 10";
+    }
 
-    temp.mobile = temp.mobile != "" ? temp.mobile : values.mobile.length == 10 ? "" : "Length is should be 10";
-    temp.city = values.city ? "" : "This field is required";
-    temp.departmentId = values.departmentId.length > 0 ? "" : "This field is required";
+    if ("city" in fieldValues) {
+      temp.city = values.city ? "" : "This field is required";
+    }
+    if ("departmentId" in fieldValues) {
+      temp.departmentId = values.departmentId.length > 0 ? "" : "This field is required";
+    }
     setErrors({
       ...temp,
     });
-    return Object.values(temp).every((x) => x == "");
+    if (fieldValues == values) {
+      return Object.values(temp).every((x) => x == "");
+    }
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = MyControls.useForm(intialFieldValues);
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = MyControls.useForm(intialFieldValues, true, validate);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (validate(values)) {
       window.alert("All are valid");
     }
   };
