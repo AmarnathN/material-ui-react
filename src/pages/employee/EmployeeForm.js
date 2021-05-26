@@ -25,21 +25,21 @@ const EmployeeForm = () => {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("fullName" in fieldValues) {
-      temp.fullName = values.fullName.length > 0 ? "" : "This field is required";
+      temp.fullName = fieldValues.fullName.length > 0 ? "" : "This field is required";
     }
     if ("email" in fieldValues) {
-      temp.email = /$^|.+@+..+/.test(values.email) ? "" : "Valid Email is required";
+      temp.email = /$^|.+@+..+/.test(fieldValues.email) ? "" : "Valid Email is required";
     }
     if ("mobile" in fieldValues) {
-      temp.mobile = isNaN(values.mobile) ? "Valid Mobile Number is Required" : "";
-      temp.mobile = temp.mobile != "" ? temp.mobile : values.mobile.length == 10 ? "" : "Length is should be 10";
+      temp.mobile = isNaN(fieldValues.mobile) ? "Valid Mobile Number is Required" : "";
+      temp.mobile = temp.mobile != "" ? temp.mobile : fieldValues.mobile.length == 10 ? "" : "Length is should be 10";
     }
 
     if ("city" in fieldValues) {
-      temp.city = values.city ? "" : "This field is required";
+      temp.city = fieldValues.city ? "" : "This field is required";
     }
     if ("departmentId" in fieldValues) {
-      temp.departmentId = values.departmentId.length > 0 ? "" : "This field is required";
+      temp.departmentId = fieldValues.departmentId.length > 0 ? "" : "This field is required";
     }
     setErrors({
       ...temp,
