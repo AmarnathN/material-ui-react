@@ -35,25 +35,21 @@ const Header = () => {
       <Toolbar>
         <Grid container alignItems={"center"}>
           <Grid item>
-            <InputBase
-              className={classes.searchInput}
-              placeholder={"search topics..."}
-              startAdornment={<Search color="secondary" />}
-            ></InputBase>
+            <InputBase className={classes.searchInput} placeholder={"search topics..."} startAdornment={<Search />}></InputBase>
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton color="secondary">
-              <Badge badgeContent={3}>
+            <IconButton color="Inherit">
+              <Badge badgeContent={3} color={"secondary"}>
                 <NotificationsNoneIcon></NotificationsNoneIcon>
               </Badge>
             </IconButton>
-            <IconButton color="secondary">
-              <Badge badgeContent={2}>
+            <IconButton color="Inherit">
+              <Badge badgeContent={2} color={"secondary"}>
                 <ChatBubbleIcon></ChatBubbleIcon>
               </Badge>
             </IconButton>
-            <IconButton color="secondary">
+            <IconButton color="Inherit">
               <ExitToAppIcon></ExitToAppIcon>
             </IconButton>
           </Grid>

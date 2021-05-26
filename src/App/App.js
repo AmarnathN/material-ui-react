@@ -9,12 +9,15 @@ import "./App.css";
 const theme = createMuiTheme({
   palette: {
     secondary: {
+      main: "#ff6200",
+    },
+    theme: {
       main: "#00e68a",
       light: "#1affd1",
     },
     primary: {
       light: "#787878",
-      main: "#000000",
+      main: "#263294",
     },
     background: {
       default: "#f2f2f2",

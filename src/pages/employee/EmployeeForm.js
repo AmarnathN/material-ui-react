@@ -27,14 +27,14 @@ const EmployeeForm = () => {
   return (
     <MyControls.Form>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item md={6} sm={12}>
           <MyControls.Input label="Full Name" value={values.fullName} onChange={handleInputChange} name="fullName" />
           <MyControls.Input label="Email" value={values.email} onChange={handleInputChange} name="email" />
           <MyControls.Input label="Mobile" value={values.mobile} onChange={handleInputChange} name="mobile" />
           <MyControls.Input label="City" value={values.city} onChange={handleInputChange} name="city" />
         </Grid>
-        <Grid item xs={6}>
-          <MyControls.RadioGroup name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
+        <Grid item md={6} sm={12}>
+          <MyControls.RadioGroup label={"Gender"} name="gender" value={values.gender} onChange={handleInputChange} items={genderItems} />
           <MyControls.Select
             label="Department"
             name="departmentId"
