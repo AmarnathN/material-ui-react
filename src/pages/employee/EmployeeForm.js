@@ -26,7 +26,9 @@ const EmployeeForm = () => {
     let temp = {};
     temp.fullName = values.fullName.length > 0 ? "" : "This field is required";
     temp.email = /$^|.+@+..+/.test(values.email) ? "" : "Valid Email is required";
-    temp.mobile = values.mobile.length == 10 && Number.parseInt(values.mobile) != NaN ? "" : "Valid Mobile Number is Required";
+    temp.mobile = isNaN(values.mobile) ? "Valid Mobile Number is Required" : "";
+
+    temp.mobile = temp.mobile != "" ? temp.mobile : values.mobile.length == 10 ? "" : "Length is should be 10";
     temp.city = values.city ? "" : "This field is required";
     temp.departmentId = values.departmentId.length > 0 ? "" : "This field is required";
     setErrors({
@@ -67,6 +69,7 @@ const EmployeeForm = () => {
             value={values.departmentId}
             onChange={handleInputChange}
             options={getDepartments()}
+            errorText={errors.departmentId}
           />
           <MyControls.Checkbox label="Permanent Employee" name="isPermanent" value={values.isPermanent} onChange={handleInputChange} />
           <MyControls.DatePicker label="Hire Date" name="hireDate" value={values.hireDate} onChange={handleInputChange} />
