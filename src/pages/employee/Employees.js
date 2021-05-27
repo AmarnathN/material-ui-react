@@ -4,7 +4,7 @@ import { Add as AddIcon, PeopleAltOutlined as PeopleAltOutlinedIcon, Search } fr
 import PageHeader from "../../components/PageHeader";
 import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
-import { getAllEmployees } from "../../services/employeeService";
+import { addEmployee, getAllEmployees } from "../../services/employeeService";
 import { MyControls } from "../../components/controls/MyControls";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +48,11 @@ const Employees = () => {
     });
   };
 
+  const addOrEditEmployees = (employeeValues, resetForm) => {
+    addEmployee(employeeValues);
+    resetForm();
+  };
+
   const handleOpenPopup = (e) => {
     setOpenPopup(true);
   };
@@ -86,7 +91,7 @@ const Employees = () => {
           setOpenPopup={setOpenPopup}
           handleClosePopup={handleClosePopup}
         >
-          <EmployeeForm />
+          <EmployeeForm addOrEditEmployees={addOrEditEmployees} />
         </MyControls.PopupDialog>
 
         <TableContainer>

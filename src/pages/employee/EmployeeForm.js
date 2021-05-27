@@ -21,7 +21,9 @@ const intialFieldValues = {
   isPermanent: false,
 };
 
-const EmployeeForm = () => {
+const EmployeeForm = (props) => {
+  const { addOrEditEmployees } = props;
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("fullName" in fieldValues) {
@@ -54,8 +56,7 @@ const EmployeeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate(values)) {
-      addEmployee(values);
-      resetForm();
+      addOrEditEmployees(values, resetForm);
     }
   };
 
