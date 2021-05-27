@@ -56,7 +56,7 @@ const Employees = () => {
         <Toolbar>
           <MyControls.Input
             className={classes.searcInput}
-            label="search employee"
+            label="search employee by name"
             onChange={handleSearch}
             InputProps={{
               startAdornment: (
