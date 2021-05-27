@@ -1,5 +1,6 @@
-import { Dialog, DialogContent, DialogTitle, Divider, makeStyles } from "@material-ui/core";
+import { Dialog, DialogContent, DialogTitle, Divider, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { MyControls } from "./MyControls";
 
 const useStyles = makeStyles((theme) => ({
   dialogWrapper: {
@@ -14,7 +15,14 @@ const PopupDialog = (props) => {
   const { title, children, openPopup, setOpenPopup } = props;
   return (
     <Dialog open={openPopup} maxWidth="md" classes={{ paper: classes.dialogWrapper }}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle>
+        <div style={{ display: "flex" }}>
+          <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
+            {title}
+          </Typography>
+          <MyControls.Button text={"X"} color="secondary" />
+        </div>
+      </DialogTitle>
       <Divider />
       <DialogContent>{children}</DialogContent>
     </Dialog>
