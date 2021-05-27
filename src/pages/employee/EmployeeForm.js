@@ -22,7 +22,7 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = (props) => {
-  const { addOrEditEmployees } = props;
+  const { addOrEditEmployees, setRecords, handleClosePopup } = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -57,6 +57,8 @@ const EmployeeForm = (props) => {
     e.preventDefault();
     if (validate(values)) {
       addOrEditEmployees(values, resetForm);
+      handleClosePopup();
+      setRecords();
     }
   };
 

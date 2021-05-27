@@ -91,7 +91,11 @@ const Employees = () => {
           setOpenPopup={setOpenPopup}
           handleClosePopup={handleClosePopup}
         >
-          <EmployeeForm addOrEditEmployees={addOrEditEmployees} />
+          <EmployeeForm
+            addOrEditEmployees={addOrEditEmployees}
+            handleClosePopup={handleClosePopup}
+            setRecords={() => setRecords(getAllEmployees())}
+          />
         </MyControls.PopupDialog>
 
         <TableContainer>
