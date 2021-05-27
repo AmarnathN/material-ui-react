@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
-import { PeopleAltOutlined as PeopleAltOutlinedIcon, Search } from "@material-ui/icons";
+import { Add as AddIcon, PeopleAltOutlined as PeopleAltOutlinedIcon, Search } from "@material-ui/icons";
 import PageHeader from "../../components/PageHeader";
-import { InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
+import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
 import { getAllEmployees } from "../../services/employeeService";
 import { MyControls } from "../../components/controls/MyControls";
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(5),
     padding: theme.spacing(2),
   },
-  searcInput: {
-    width: "75%",
+  searchInput: {
+    width: "100%",
   },
 }));
 
@@ -28,6 +28,8 @@ const HeadCells = [
 const Employees = () => {
   const classes = useStyles();
   const [records, setRecords] = useState(getAllEmployees());
+  const [openPopup, setOpenPopup] = useState(false);
+
   const [filterFunction, setFilterFunction] = useState({ fn: (items) => items });
 
   const { TableContainer, TableHead, TablePagination, recordsAfterPagingAndSorting } = useTable(records, HeadCells, filterFunction);
@@ -46,27 +48,38 @@ const Employees = () => {
     });
   };
 
+  const handleOpenPopup = (e) => {
+    setOpenPopup(true);
+  };
+
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
       <Paper className={classes.pageContent}>
-        <EmployeeForm />
-      </Paper>
-      <Paper className={classes.pageContent}>
-        <Toolbar>
-          <MyControls.Input
-            className={classes.searcInput}
-            label="search employee by name"
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Toolbar>
+        <Grid container>
+          <Grid item xs={12} md={10}>
+            <MyControls.Input
+              className={classes.searchInput}
+              label="search employee by name"
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <MyControls.Button text={"Add New"} size="medium" variant="outlined" startIcon={<AddIcon />} onClick={handleOpenPopup} />
+          </Grid>
+        </Grid>
+
+        <MyControls.PopupDialog title="Add New Employee" openPopup={openPopup} setOpenPopup={setOpenPopup}>
+          <EmployeeForm />
+        </MyControls.PopupDialog>
+
         <TableContainer>
           <TableHead />
           <TableBody>

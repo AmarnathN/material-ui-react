@@ -5,6 +5,7 @@ import Checkbox from "../../components/controls/Checkbox";
 import DatePicker from "../../components/controls/DatePicker";
 import Button from "../../components/controls/Button";
 import { useForm, Form } from "../controlsHandlers/useForm";
+import PopupDialog from "./PopupDialog";
 
 export const MyControls = {
   Button,
@@ -14,5 +15,6 @@ export const MyControls = {
   Select,
   Checkbox,
   DatePicker,
+  PopupDialog,
   useForm,
 };
