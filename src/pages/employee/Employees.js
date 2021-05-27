@@ -52,6 +52,10 @@ const Employees = () => {
     setOpenPopup(true);
   };
 
+  const handleClosePopup = (e) => {
+    setOpenPopup(false);
+  };
+
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
@@ -76,7 +80,12 @@ const Employees = () => {
           </Grid>
         </Grid>
 
-        <MyControls.PopupDialog title="Add New Employee" openPopup={openPopup} setOpenPopup={setOpenPopup}>
+        <MyControls.PopupDialog
+          title="Add New Employee"
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          handleClosePopup={handleClosePopup}
+        >
           <EmployeeForm />
         </MyControls.PopupDialog>
 

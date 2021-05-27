@@ -6,8 +6,10 @@ import DatePicker from "../../components/controls/DatePicker";
 import Button from "../../components/controls/Button";
 import { useForm, Form } from "../controlsHandlers/useForm";
 import PopupDialog from "./PopupDialog";
+import ActionIconButton from "./ActionIconButton";
 
 export const MyControls = {
+  ActionIconButton,
   Button,
   Input,
   RadioGroup,
