@@ -24,7 +24,7 @@ const HeadCells = [
 const Employees = () => {
   const classes = useStyles();
   const [records, setRecords] = useState(getAllEmployees());
-  const { TableContainer, TableHead } = useTable(records, HeadCells);
+  const { TableContainer, TableHead, TablePagination, recordsAfterPagingAndSorting } = useTable(records, HeadCells);
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
@@ -35,7 +35,7 @@ const Employees = () => {
         <TableContainer>
           <TableHead />
           <TableBody>
-            {records.map((record, index) => {
+            {recordsAfterPagingAndSorting().map((record, index) => {
               return (
                 <TableRow key={index}>
                   <TableCell>{record.id}</TableCell>
@@ -48,6 +48,7 @@ const Employees = () => {
             })}
           </TableBody>
         </TableContainer>
+        <TablePagination />
       </Paper>
     </div>
   );
