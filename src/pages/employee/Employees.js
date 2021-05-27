@@ -31,6 +31,7 @@ const Employees = () => {
   const [records, setRecords] = useState(getAllEmployees());
   const [recordForEdit, setRecordForEdit] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
+  const [notify, setNotify] = useState({ isOpen: false, alertMessage: "", alertType: "" });
 
   const [filterFunction, setFilterFunction] = useState({ fn: (items) => items });
 
@@ -102,20 +103,6 @@ const Employees = () => {
           </Grid>
         </Grid>
 
-        <MyControls.PopupDialog
-          title="Add New Employee"
-          openPopup={openPopup}
-          setOpenPopup={setOpenPopup}
-          handleClosePopup={handleClosePopup}
-        >
-          <EmployeeForm
-            recordForEdit={getRecordForEdit()}
-            addOrEditEmployees={addOrEditEmployees}
-            handleClosePopup={handleClosePopup}
-            setRecords={() => setRecords(getAllEmployees())}
-          />
-        </MyControls.PopupDialog>
-
         <TableContainer>
           <TableHead />
           <TableBody>
@@ -146,6 +133,22 @@ const Employees = () => {
         </TableContainer>
         <TablePagination />
       </Paper>
+
+      <MyControls.PopupDialog
+        title="Add New Employee"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        handleClosePopup={handleClosePopup}
+      >
+        <EmployeeForm
+          recordForEdit={getRecordForEdit()}
+          addOrEditEmployees={addOrEditEmployees}
+          handleClosePopup={handleClosePopup}
+          setRecords={() => setRecords(getAllEmployees())}
+          setNotify={setNotify}
+        />
+      </MyControls.PopupDialog>
+      <MyControls.Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

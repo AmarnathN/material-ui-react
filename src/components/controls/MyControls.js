@@ -7,7 +7,7 @@ import Button from "../../components/controls/Button";
 import { useForm, Form } from "../controlsHandlers/useForm";
 import PopupDialog from "./PopupDialog";
 import ActionIconButton from "./ActionIconButton";
-
+import Notification from "./Notification";
 export const MyControls = {
   ActionIconButton,
   Button,
@@ -18,5 +18,6 @@ export const MyControls = {
   Checkbox,
   DatePicker,
   PopupDialog,
+  Notification,
   useForm,
 };

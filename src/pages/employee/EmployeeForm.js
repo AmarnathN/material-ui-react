@@ -22,7 +22,7 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = (props) => {
-  const { addOrEditEmployees, setRecords, handleClosePopup, recordForEdit } = props;
+  const { addOrEditEmployees, setRecords, handleClosePopup, recordForEdit, setNotify } = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -60,6 +60,11 @@ const EmployeeForm = (props) => {
       addOrEditEmployees(values, resetForm, isUpdate);
       handleClosePopup();
       setRecords();
+      setNotify({
+        isOpen: true,
+        message: isUpdate ? "Updated Successfully" : "created succcessfully",
+        type: "success",
+      });
     }
   };
 
