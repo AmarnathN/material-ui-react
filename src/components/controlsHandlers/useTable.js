@@ -86,13 +86,17 @@ const useTable = (records, headers) => {
           {headers.map((header) => {
             return (
               <TableCell key={header.id} sortDirection={orderBy === header.id ? order : false}>
-                <TableSortLabel
-                  active={orderBy === header.id}
-                  direction={orderBy === header.id ? order : "asc"}
-                  onClick={() => handleSortRequest(header.id)}
-                >
-                  {header.label}
-                </TableSortLabel>
+                {header.disableSorting ? (
+                  header.label
+                ) : (
+                  <TableSortLabel
+                    active={orderBy === header.id}
+                    direction={orderBy === header.id ? order : "asc"}
+                    onClick={() => handleSortRequest(header.id)}
+                  >
+                    {header.label}
+                  </TableSortLabel>
+                )}
               </TableCell>
             );
           })}

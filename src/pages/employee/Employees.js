@@ -18,7 +18,7 @@ const HeadCells = [
   { id: "fullName", label: "Full Name" },
   { id: "email", label: "Email" },
   { id: "mobile", label: "Mobile" },
-  { id: "department", label: "Department" },
+  { id: "department", label: "Department", disableSorting: true },
 ];
 
 const Employees = () => {
