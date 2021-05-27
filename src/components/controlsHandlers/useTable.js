@@ -33,7 +33,11 @@ const useTable = (records, headers) => {
   const [order, setOrder] = useState();
   const [orderBy, setOrderBy] = useState();
 
-  const handleSortRequest = () => {};
+  const handleSortRequest = (cellId) => {
+    const isAsc = orderBy === cellId && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(cellId);
+  };
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -44,8 +48,31 @@ const useTable = (records, headers) => {
     setPage(0);
   };
 
+  const stableArraySort = (recordsArray, comparator) => {
+    const stablizedArray = recordsArray.map((ele, index) => [ele, index]);
+    stablizedArray.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order != 0) return order;
+      return (a[1] = b[1]);
+    });
+    return stablizedArray.map((ele) => ele[0]);
+  };
+
+  const getComparator = (order, orderBy) => {
+    return order === "desc" ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
+  };
+
+  const descendingComparator = (a, b, orderBy) => {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  };
   const recordsAfterPagingAndSorting = () => {
-    return records.slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+    return stableArraySort(records, getComparator(order, orderBy)).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
   };
 
   const TableContainer = (props) => {
@@ -57,7 +84,17 @@ const useTable = (records, headers) => {
       <MuiTableHead>
         <TableRow>
           {headers.map((header) => {
-            return <TableCell key={header.id}>{header.label}</TableCell>;
+            return (
+              <TableCell key={header.id} sortDirection={orderBy === header.id ? order : false}>
+                <TableSortLabel
+                  active={orderBy === header.id}
+                  direction={orderBy === header.id ? order : "asc"}
+                  onClick={() => handleSortRequest(header.id)}
+                >
+                  {header.label}
+                </TableSortLabel>
+              </TableCell>
+            );
           })}
         </TableRow>
       </MuiTableHead>
