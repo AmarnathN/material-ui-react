@@ -53,6 +53,7 @@ const Employees = () => {
   const addOrEditEmployees = (employeeValues, resetForm) => {
     addEmployee(employeeValues);
     resetForm();
+    setRecordForEdit({});
   };
 
   const handleOpenPopup = (e) => {
