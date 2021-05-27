@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { MyControls } from "../../components/controls/MyControls";
 import { getDepartments, addEmployee } from "../../services/employeeService";
 
@@ -22,7 +22,7 @@ const intialFieldValues = {
 };
 
 const EmployeeForm = (props) => {
-  const { addOrEditEmployees, setRecords, handleClosePopup } = props;
+  const { addOrEditEmployees, setRecords, handleClosePopup, recordForEdit } = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -61,6 +61,12 @@ const EmployeeForm = (props) => {
       setRecords();
     }
   };
+
+  useEffect(() => {
+    if (recordForEdit != null) {
+      setValues({ ...recordForEdit });
+    }
+  }, [recordForEdit]);
 
   return (
     <MyControls.Form onSubmit={handleSubmit}>

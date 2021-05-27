@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
-import { Add as AddIcon, PeopleAltOutlined as PeopleAltOutlinedIcon, Search } from "@material-ui/icons";
+import { Add as AddIcon, Delete, Edit, PeopleAltOutlined as PeopleAltOutlinedIcon, Search } from "@material-ui/icons";
 import PageHeader from "../../components/PageHeader";
 import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
@@ -22,12 +22,14 @@ const HeadCells = [
   { id: "fullName", label: "Full Name" },
   { id: "email", label: "Email" },
   { id: "mobile", label: "Mobile" },
-  { id: "department", label: "Department", disableSorting: true },
+  { id: "department", label: "Department" },
+  { id: "actions", label: "Actions", disableSorting: true },
 ];
 
 const Employees = () => {
   const classes = useStyles();
   const [records, setRecords] = useState(getAllEmployees());
+  const [recordForEdit, setRecordForEdit] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
 
   const [filterFunction, setFilterFunction] = useState({ fn: (items) => items });
@@ -61,9 +63,15 @@ const Employees = () => {
     setOpenPopup(false);
   };
 
+  const openInpopup = (record) => {
+    setRecordForEdit(record);
+    setOpenPopup(true);
+  };
+
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
+
       <Paper className={classes.pageContent}>
         <Grid container>
           <Grid item xs={12} md={10}>
@@ -92,6 +100,7 @@ const Employees = () => {
           handleClosePopup={handleClosePopup}
         >
           <EmployeeForm
+            recordForEdit={recordForEdit}
             addOrEditEmployees={addOrEditEmployees}
             handleClosePopup={handleClosePopup}
             setRecords={() => setRecords(getAllEmployees())}
@@ -109,6 +118,18 @@ const Employees = () => {
                   <TableCell>{record.email}</TableCell>
                   <TableCell>{record.mobile}</TableCell>
                   <TableCell>{record.department}</TableCell>
+                  <TableCell>
+                    {
+                      <div>
+                        <MyControls.ActionIconButton color="secondary" onClick={() => openInpopup(record)}>
+                          <Edit />
+                        </MyControls.ActionIconButton>
+                        <MyControls.ActionIconButton color="theme">
+                          <Delete />
+                        </MyControls.ActionIconButton>
+                      </div>
+                    }
+                  </TableCell>
                 </TableRow>
               );
             })}

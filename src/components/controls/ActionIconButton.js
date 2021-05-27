@@ -28,9 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ActionIconButton = (props) => {
   const classes = useStyles();
-  const { color, children, onClick, variant, ...other } = props;
+  const { color, children, onClick, variant, size, ...other } = props;
   return (
-    <Button className={`${classes.root} ${classes[color] || "theme"}`} onClick={onClick} variant={variant || "outlined"} {...other}>
+    <Button
+      className={`${classes.root} ${classes[color] || "theme"}`}
+      onClick={onClick}
+      variant={variant || "outlined"}
+      size={size || "small"}
+      {...other}
+    >
       {children}
     </Button>
   );
