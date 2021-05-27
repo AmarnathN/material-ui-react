@@ -56,7 +56,8 @@ const EmployeeForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate(values)) {
-      addOrEditEmployees(values, resetForm);
+      let isUpdate = Object.keys(recordForEdit).length != 0 ? true : false;
+      addOrEditEmployees(values, resetForm, isUpdate);
       handleClosePopup();
       setRecords();
     }

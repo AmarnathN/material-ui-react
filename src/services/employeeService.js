@@ -19,6 +19,13 @@ export const addEmployee = (data) => {
   localStorage.setItem(KEYS.employees, JSON.stringify(employees));
 };
 
+export const updateEmployee = (data) => {
+  let employees = getAllEmployees();
+  let employeeRecordIndex = employees.findIndex((x) => x.id === data.id);
+  employees[employeeRecordIndex] = { ...data };
+  localStorage.setItem(KEYS.employees, JSON.stringify(employees));
+};
+
 const generateEmployeeId = () => {
   if (localStorage.getItem(KEYS.employeeId) == null) {
     localStorage.setItem(KEYS.employeeId, "0");
@@ -32,7 +39,7 @@ export const getAllEmployees = () => {
   let employees = [];
   if (localStorage.getItem(KEYS.employees)) {
     employees = JSON.parse(localStorage.getItem(KEYS.employees));
-    return employees.map((emp) => ({ ...emp, department: getDepartments()[emp.departmentId].title }));
+    return employees.map((emp) => ({ ...emp, department: getDepartments().filter((dep) => dep.id === emp.departmentId)[0].title }));
   }
   return employees;
 };

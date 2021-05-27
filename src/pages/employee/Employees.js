@@ -4,7 +4,7 @@ import { Add as AddIcon, Delete, Edit, PeopleAltOutlined as PeopleAltOutlinedIco
 import PageHeader from "../../components/PageHeader";
 import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
-import { addEmployee, getAllEmployees } from "../../services/employeeService";
+import { addEmployee, getAllEmployees, updateEmployee } from "../../services/employeeService";
 import { MyControls } from "../../components/controls/MyControls";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,10 +50,14 @@ const Employees = () => {
     });
   };
 
-  const addOrEditEmployees = (employeeValues, resetForm) => {
-    addEmployee(employeeValues);
+  const addOrEditEmployees = (employeeValues, resetForm, isUpdate = false) => {
+    if (isUpdate) {
+      updateEmployee(employeeValues);
+      setRecordForEdit({});
+    } else {
+      addEmployee(employeeValues);
+    }
     resetForm();
-    setRecordForEdit({});
   };
 
   const handleOpenPopup = (e) => {
@@ -67,6 +71,10 @@ const Employees = () => {
   const openInpopup = (record) => {
     setRecordForEdit(record);
     setOpenPopup(true);
+  };
+
+  const getRecordForEdit = () => {
+    return recordForEdit;
   };
 
   return (
@@ -101,7 +109,7 @@ const Employees = () => {
           handleClosePopup={handleClosePopup}
         >
           <EmployeeForm
-            recordForEdit={recordForEdit}
+            recordForEdit={getRecordForEdit()}
             addOrEditEmployees={addOrEditEmployees}
             handleClosePopup={handleClosePopup}
             setRecords={() => setRecords(getAllEmployees())}
