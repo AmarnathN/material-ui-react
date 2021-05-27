@@ -4,7 +4,7 @@ import Select from "../../components/controls/Select";
 import Checkbox from "../../components/controls/Checkbox";
 import DatePicker from "../../components/controls/DatePicker";
 import Button from "../../components/controls/Button";
-import { useForm, Form } from "./useForm";
+import { useForm, Form } from "../controlsHandlers/useForm";
 
 export const MyControls = {
   Button,
