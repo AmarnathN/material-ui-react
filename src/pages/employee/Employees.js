@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
-import { PeopleAltOutlined as PeopleAltOutlinedIcon } from "@material-ui/icons";
+import { PeopleAltOutlined as PeopleAltOutlinedIcon, Search } from "@material-ui/icons";
 import PageHeader from "../../components/PageHeader";
-import { makeStyles, Paper, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
 import { getAllEmployees } from "../../services/employeeService";
+import { MyControls } from "../../components/controls/MyControls";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     margin: theme.spacing(5),
     padding: theme.spacing(2),
+  },
+  searcInput: {
+    width: "75%",
   },
 }));
 
@@ -24,7 +28,24 @@ const HeadCells = [
 const Employees = () => {
   const classes = useStyles();
   const [records, setRecords] = useState(getAllEmployees());
-  const { TableContainer, TableHead, TablePagination, recordsAfterPagingAndSorting } = useTable(records, HeadCells);
+  const [filterFunction, setFilterFunction] = useState({ fn: (items) => items });
+
+  const { TableContainer, TableHead, TablePagination, recordsAfterPagingAndSorting } = useTable(records, HeadCells, filterFunction);
+
+  const handleSearch = (event) => {
+    let target = event.target;
+    setFilterFunction({
+      fn: (items) => {
+        if (target.value == "") {
+          return items;
+        } else {
+          debugger;
+          return items.filter((x) => x.fullName.toString().toLowerCase().includes(target.value.toLowerCase()));
+        }
+      },
+    });
+  };
+
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
@@ -32,6 +53,20 @@ const Employees = () => {
         <EmployeeForm />
       </Paper>
       <Paper className={classes.pageContent}>
+        <Toolbar>
+          <MyControls.Input
+            className={classes.searcInput}
+            label="search employee"
+            onChange={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Toolbar>
         <TableContainer>
           <TableHead />
           <TableBody>

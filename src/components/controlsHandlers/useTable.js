@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useTable = (records, headers) => {
+const useTable = (records, headers, filterFunction) => {
   const classes = useStyles();
 
   const pages = [5, 10, 25];
@@ -72,7 +72,7 @@ const useTable = (records, headers) => {
     return 0;
   };
   const recordsAfterPagingAndSorting = () => {
-    return stableArraySort(records, getComparator(order, orderBy)).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+    return stableArraySort(filterFunction.fn(records), getComparator(order, orderBy)).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
   };
 
   const TableContainer = (props) => {
