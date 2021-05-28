@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
   pageContent: {
     margin: theme.spacing(5),
     padding: theme.spacing(2),
+    borderRadius: "15px",
+    boxShadow: `inset -1px -1px 5px ${theme.palette.background.light},inset 1px 1px 5px ${theme.palette.background.light}`,
   },
   searchInput: {
     width: "100%",
