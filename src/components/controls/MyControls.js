@@ -8,6 +8,8 @@ import { useForm, Form } from "../controlsHandlers/useForm";
 import PopupDialog from "./PopupDialog";
 import ActionIconButton from "./ActionIconButton";
 import Notification from "./Notification";
+import ConfirmDialog from "./ConfirmDialog";
+
 export const MyControls = {
   ActionIconButton,
   Button,
@@ -19,5 +21,6 @@ export const MyControls = {
   DatePicker,
   PopupDialog,
   Notification,
+  ConfirmDialog,
   useForm,
 };

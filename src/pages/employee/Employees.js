@@ -31,6 +31,7 @@ const Employees = () => {
   const [records, setRecords] = useState(getAllEmployees());
   const [recordForEdit, setRecordForEdit] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "", subTitle: "" });
   const [notify, setNotify] = useState({ isOpen: false, alertMessage: "", alertType: "" });
 
   const [filterFunction, setFilterFunction] = useState({ fn: (items) => items });
@@ -79,6 +80,7 @@ const Employees = () => {
   };
 
   const handleDeleteRecord = (id) => {
+    setConfirmDialog({ ...confirmDialog, isOpen: false });
     deleteEmployee(id);
     setRecords(getAllEmployees());
     setNotify({
@@ -130,7 +132,17 @@ const Employees = () => {
                         <MyControls.ActionIconButton color="secondary" onClick={() => openInpopup(record)}>
                           <Edit />
                         </MyControls.ActionIconButton>
-                        <MyControls.ActionIconButton color="theme" onClick={() => handleDeleteRecord(record.id)}>
+                        <MyControls.ActionIconButton
+                          color="theme"
+                          onClick={() => {
+                            setConfirmDialog({
+                              isOpen: true,
+                              title: "Are you sure to Delete",
+                              subTitle: `Delete record of employee "${record.fullName}"`,
+                              onConfirm: () => handleDeleteRecord(record.id),
+                            });
+                          }}
+                        >
                           <Delete />
                         </MyControls.ActionIconButton>
                       </div>
@@ -159,6 +171,7 @@ const Employees = () => {
         />
       </MyControls.PopupDialog>
       <MyControls.Notification notify={notify} setNotify={setNotify} />
+      <MyControls.ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
     </div>
   );
 };
