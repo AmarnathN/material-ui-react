@@ -24,7 +24,7 @@ const theme = createMuiTheme({
       // default: "#f2f2f2",
       default: "#e2e2e2",
       light: "#a8a8a8",
-      dark: "#00000",
+      dark: "#000000",
     },
   },
   shape: {
