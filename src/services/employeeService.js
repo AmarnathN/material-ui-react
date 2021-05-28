@@ -43,3 +43,9 @@ export const getAllEmployees = () => {
   }
   return employees;
 };
+
+export const deleteEmployee = (id) => {
+  let employees = getAllEmployees();
+  employees = employees.filter((x) => x.id != id);
+  localStorage.setItem(KEYS.employees, JSON.stringify(employees));
+};

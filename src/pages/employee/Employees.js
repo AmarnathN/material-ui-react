@@ -4,7 +4,7 @@ import { Add as AddIcon, Delete, Edit, PeopleAltOutlined as PeopleAltOutlinedIco
 import PageHeader from "../../components/PageHeader";
 import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
-import { addEmployee, getAllEmployees, updateEmployee } from "../../services/employeeService";
+import { addEmployee, deleteEmployee, getAllEmployees, updateEmployee } from "../../services/employeeService";
 import { MyControls } from "../../components/controls/MyControls";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,6 +78,16 @@ const Employees = () => {
     return recordForEdit;
   };
 
+  const handleDeleteRecord = (id) => {
+    deleteEmployee(id);
+    setRecords(getAllEmployees());
+    setNotify({
+      isOpen: true,
+      alertMessage: "Deleted succcessfully",
+      alertType: "error",
+    });
+  };
+
   return (
     <div>
       <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
@@ -120,7 +130,7 @@ const Employees = () => {
                         <MyControls.ActionIconButton color="secondary" onClick={() => openInpopup(record)}>
                           <Edit />
                         </MyControls.ActionIconButton>
-                        <MyControls.ActionIconButton color="theme">
+                        <MyControls.ActionIconButton color="theme" onClick={() => handleDeleteRecord(record.id)}>
                           <Delete />
                         </MyControls.ActionIconButton>
                       </div>

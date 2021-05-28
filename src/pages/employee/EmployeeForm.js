@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { MyControls } from "../../components/controls/MyControls";
-import { getDepartments, addEmployee } from "../../services/employeeService";
+import { getDepartments } from "../../services/employeeService";
 
 const genderItems = [
   { id: "male", label: "Male" },
