@@ -15,7 +15,7 @@ const intialFieldValues = {
   email: "",
   mobile: "",
   city: "",
-  gender: "M",
+  gender: "male",
   departmentId: "",
   hireDate: new Date(),
   isPermanent: false,
@@ -46,7 +46,7 @@ const EmployeeForm = (props) => {
     setErrors({
       ...temp,
     });
-    if (fieldValues == values) {
+    if (fieldValues === values) {
       return Object.values(temp).every((x) => x == "");
     }
   };
@@ -62,14 +62,14 @@ const EmployeeForm = (props) => {
       setRecords();
       setNotify({
         isOpen: true,
-        message: isUpdate ? "Updated Successfully" : "created succcessfully",
-        type: "success",
+        alertMessage: isUpdate ? "Updated Successfully" : "created succcessfully",
+        alertType: "success",
       });
     }
   };
 
   useEffect(() => {
-    if (recordForEdit != null) {
+    if (Object.keys(recordForEdit).length > 0) {
       setValues({ ...recordForEdit });
     }
   }, [recordForEdit]);
