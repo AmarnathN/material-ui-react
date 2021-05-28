@@ -12,16 +12,18 @@ const theme = createMuiTheme({
       main: "#ff6200",
     },
     theme: {
-      main: "#00e68a",
-      light: "#1affd1",
+      main: "#00e0ce",
+      light: "#a7d4d0",
     },
     primary: {
-      light: "#787878",
-      main: "#263294",
+      main: "#00e0ce",
+      light: "#82d1cb",
     },
     background: {
-      default: "#f2f2f2",
-      light: "#787878",
+      // default: "#f2f2f2",
+      default: "#787878",
+      light: "#e8e8e8",
+      dark: "#00000",
     },
   },
   shape: {
@@ -43,7 +45,6 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   appMain: {
-    paddingLeft: "10%",
     width: "100%",
     backgroundColor: theme.palette.background.dark,
   },
@@ -54,7 +55,7 @@ function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <Sidemenu />
+        {/* <Sidemenu /> */}
         <div className={classes.appMain}>
           <Header></Header>
           <Employees />

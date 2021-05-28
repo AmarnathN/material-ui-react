@@ -9,8 +9,10 @@ import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary,
+    backgroundColor: theme.palette.theme.main,
     transform: "translateZ(-19.7rem)",
+    background: `linear-gradient(165deg, ${theme.palette.theme.main} 75%,white 95%)`,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
   },
   searchInput: {
     opacity: 0.6,
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiSvgIcon-root": {
       paddingRight: theme.spacing(1),
     },
+    borderRadius: "6px",
   },
 }));
 

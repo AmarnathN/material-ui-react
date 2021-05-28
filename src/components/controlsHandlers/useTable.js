@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     "& thead th": {
       fontWeight: "600",
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.theme.dark,
+      backgroundColor: theme.palette.background.light,
     },
     "& tbody td": {
       fontWeight: "300",

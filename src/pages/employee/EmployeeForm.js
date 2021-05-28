@@ -99,7 +99,13 @@ const EmployeeForm = (props) => {
             options={getDepartments()}
             errorText={errors.departmentId}
           />
-          <MyControls.Checkbox label="Permanent Employee" name="isPermanent" value={values.isPermanent} onChange={handleInputChange} />
+          <MyControls.Checkbox
+            label="Permanent Employee"
+            name="isPermanent"
+            value={values.isPermanent}
+            onChange={handleInputChange}
+            color="secondary"
+          />
           <MyControls.DatePicker label="Hire Date" name="hireDate" value={values.hireDate} onChange={handleInputChange} />
           <div>
             <MyControls.Button color="primary" size="medium" text="Submit" type="submit" />

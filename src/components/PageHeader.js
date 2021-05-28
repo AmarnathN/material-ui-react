@@ -9,11 +9,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     display: "flex",
     marginBotton: theme.spacing(2),
+    background: `linear-gradient(190deg,${theme.palette.secondary.light} 75%,white 95%)`,
   },
   pageIcon: {
     display: "inline-block",
     padding: theme.spacing(2),
     color: theme.palette.primary,
+    backgroundColor: theme.palette.background,
   },
   pageTitle: {
     paddingLeft: theme.spacing(4),

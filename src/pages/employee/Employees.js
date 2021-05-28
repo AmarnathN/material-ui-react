@@ -92,7 +92,7 @@ const Employees = () => {
 
   return (
     <div>
-      <PageHeader title="New Employee" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
+      <PageHeader title="Manage Employees" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
 
       <Paper className={classes.pageContent}>
         <Grid container>
@@ -111,7 +111,14 @@ const Employees = () => {
             />
           </Grid>
           <Grid item xs={12} md={2}>
-            <MyControls.Button text={"Add New"} size="medium" variant="outlined" startIcon={<AddIcon />} onClick={handleOpenPopup} />
+            <MyControls.Button
+              text={"Add New"}
+              size="medium"
+              variant="outlined"
+              startIcon={<AddIcon />}
+              onClick={handleOpenPopup}
+              color={"inherit"}
+            />
           </Grid>
         </Grid>
 

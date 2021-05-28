@@ -2,7 +2,7 @@ import { Checkbox as MuiCheckbox, FormControl, FormControlLabel } from "@materia
 import React from "react";
 
 const Checkbox = (props) => {
-  const { name, value, label, onChange } = props;
+  const { name, value, label, onChange, color } = props;
   const convertToDefaultEventParam = (name, value) => {
     return {
       target: { name, value },
@@ -15,7 +15,7 @@ const Checkbox = (props) => {
         control={
           <MuiCheckbox
             name={name}
-            color={"primary"}
+            color={color || "primary"}
             checked={value}
             onChange={(e) => onChange(convertToDefaultEventParam(name, e.target.checked))}
           />

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     left: "0px",
     width: "10%",
     height: "100%",
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.background.light,
   },
 }));
 // const styles = {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidemenu = (props) => {
   const classes = useStyles();
-  return <div className={classes.sideMenu}></div>;
+  return <div className={classes.sideMenu}>{"Side menue to be implemented"}</div>;
   //   const { classes } = props;
   //   return <div className={classes.sideMenu}></div>;
 };
