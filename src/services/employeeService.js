@@ -1,3 +1,5 @@
+import { MOCK_EMPLOYEE_DATA } from "./mockEmployeeData";
+
 export const KEYS = {
   employees: "employees",
   employeeId: "employeeId",
@@ -10,6 +12,12 @@ export const getDepartments = () => {
     { id: "3", title: "Sales" },
     { id: "4", title: "HR" },
   ];
+};
+export const setMockEmployeeData = () => {
+  let employees = [];
+  localStorage.setItem(KEYS.employeeId, MOCK_EMPLOYEE_DATA.length + 1);
+  MOCK_EMPLOYEE_DATA.forEach((data) => employees.push(data));
+  localStorage.setItem(KEYS.employees, JSON.stringify(employees));
 };
 
 export const addEmployee = (data) => {

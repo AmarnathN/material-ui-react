@@ -4,7 +4,7 @@ import { Add as AddIcon, Delete, Edit, PeopleAltOutlined as PeopleAltOutlinedIco
 import PageHeader from "../../components/PageHeader";
 import { Grid, InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar } from "@material-ui/core";
 import useTable from "../../components/controlsHandlers/useTable";
-import { addEmployee, deleteEmployee, getAllEmployees, updateEmployee } from "../../services/employeeService";
+import { addEmployee, deleteEmployee, getAllEmployees, setMockEmployeeData, updateEmployee } from "../../services/employeeService";
 import { MyControls } from "../../components/controls/MyControls";
 
 const useStyles = makeStyles((theme) => ({
@@ -90,13 +90,23 @@ const Employees = () => {
     });
   };
 
+  const handleSetMockData = () => {
+    setMockEmployeeData();
+    setRecords(getAllEmployees());
+    setNotify({
+      isOpen: true,
+      alertMessage: "Updated Mock succcessfully",
+      alertType: "success",
+    });
+  };
+
   return (
     <div>
       <PageHeader title="Manage Employees" description="With Form Validation" icon={<PeopleAltOutlinedIcon />} />
 
       <Paper className={classes.pageContent}>
         <Grid container>
-          <Grid item xs={12} md={10}>
+          <Grid item xs={6} md={6}>
             <MyControls.Input
               className={classes.searchInput}
               label="search employee by name"
@@ -110,13 +120,20 @@ const Employees = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12} md={12}>
             <MyControls.Button
-              text={"Add New"}
+              text={"Add New Employee"}
               size="medium"
-              variant="outlined"
+              variant="contained"
               startIcon={<AddIcon />}
               onClick={handleOpenPopup}
+              color={"inherit"}
+            />
+            <MyControls.Button
+              text={"Set Mock Employee Data"}
+              size="medium"
+              variant="contained"
+              onClick={handleSetMockData}
               color={"inherit"}
             />
           </Grid>
