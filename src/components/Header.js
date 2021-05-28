@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.theme.main,
     transform: "translateZ(-19.7rem)",
-    background: `linear-gradient(165deg, ${theme.palette.theme.main} 75%,white 95%)`,
-    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    background: `linear-gradient(165deg,white 75%,${theme.palette.theme.main}  95%)`,
+    boxShadow: `0 3px 5px 2px rgba(0, 224, 206, .3)`,
   },
   searchInput: {
     opacity: 0.6,
